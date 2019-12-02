@@ -1,0 +1,57 @@
+h1{
+    width: 33%;
+    display: inline-block;
+}
+section#ejercicio01{
+    width: 33%;
+    display: inline-block;
+    background: cadetblue;
+    padding: 10px;
+    border: solid;
+    margin: 30px;
+    border-radius: 15px;
+}
+
+section#ejercicio02{
+    margin: 30px;
+}
+section#ejercicio02 > div{
+    width: 50%;
+    display: block;
+    margin: auto;
+    background: cadetblue;
+    padding: 30px;
+    border: solid;
+    border-radius: 15px;
+}
+section#ejercicio02 > div > p::selection{
+    background: chocolate;
+    color: darkkhaki;
+}
+section#ejercicio03{
+    background: chocolate;
+    color: darkkhaki;
+}
+
+.sectionAnimated{
+    transform: rotate(0.5turn);
+}
+
+.ocultarElemento {
+    display: none;
+}
+
+section#ejercicio02{
+    animation: fadeElement 3s ease-out forwards;
+}
+
+@keyframes fadeElement {
+    from{
+        opacity: 1;
+        pointer-events: all;
+    }
+    to{
+        opacity: 0;
+        pointer-events: none;
+    }
+}

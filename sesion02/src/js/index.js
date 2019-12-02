@@ -2,6 +2,8 @@ let n1Val = document.querySelector('#n1')
 let n2Val = document.querySelector('#n2')
 let ej01Button = document.querySelector('#ejercicio01 > button')
 let ej01section = document.querySelector('#ejercicio01')
+let ej02section = document.querySelector('#ejercicio02')
+let ej03section = document.querySelector('#ejercicio03')
 
 function divisionFormatted(n1, n2) {
     let divisionResult = Math.round(n1 / n2).toString()
@@ -29,3 +31,23 @@ ej01Button.addEventListener('click', function () {
     ej01section.appendChild(wrapperElement) //
 
 })
+
+ej03section.addEventListener('mouseover', function () {
+    // add css class
+    ej03section.classList.add('sectionAnimated')
+})
+
+ej03section.addEventListener('mouseleave', function () {
+    // remove css class
+    ej03section.classList.remove('sectionAnimated')
+})
+
+ej02section.addEventListener('animationstart', function(){
+    console.log('the animation has started 😎')
+})
+
+ej02section.addEventListener('animationend', function(){
+    ej02section.classList.add('ocultarElemento')
+})
+
+
