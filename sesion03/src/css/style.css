@@ -1,3 +1,7 @@
+* {
+    --primary-text-color:#888; /* texto claro */
+    --secondary-text-color:#333; /* texto claro */
+}
 
 body{
     background: #fff;
@@ -21,4 +25,96 @@ li * {
 li, h3 {
     clear: both;
     list-style: none;
+}
+
+button {
+    background: none;
+    border: 0;
+    color: var(--primary-text-color);
+    font-size: 15px;
+    width: 60px;
+    margin: 10px 0 0;
+    cursor: pointer;
+}
+
+button:hover{
+    color: var(--secondary-text-color);
+}
+
+h3, .container>p>label {
+    color: var(--secondary-text-color);
+    font-weight: 700;
+    font-size: 15px;
+    border-bottom: 2px solid var(--secondary-text-color, #000fea);
+    padding: 30px 0 10px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+input[type='text']{
+    margin: 0;
+    font-size: 18px;
+    line-height: 18px;
+    height: 18px;
+    padding: 10px;
+    border: 1px solid steelblue;
+    background: #fff;
+    border-radius: 6px;
+    color: var(--primary-text-color);
+}
+input[type='text']:focus{
+    color: var(--secondary-text-color);
+}
+
+/* New Task */
+.container>p>label{
+    display: block;
+    margin:  0 0 20px;
+}
+.container>p>input{
+    float: left;
+    width: 318px;
+}
+.container>p>button:hover{
+    color: #0fc57c;
+}
+/* Task list */
+li{
+    overflow: hidden;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+}
+li > input[type='checkbox']{
+    margin: 0 10px;
+    position: relative;
+    top:15px
+}
+li > label {
+    font-size: 18px;
+    line-height: 40px;
+    width: 237px;
+    padding: 0 0 0 11px;
+}
+li >  input[type="text"] {
+    width: 226px;
+  }
+  li > .delete:hover {
+    color: #CF2323;
+  }
+
+/* container */
+.container>ul:nth-of-type(2n) label{
+    text-decoration: line-through;
+    color: var(--primary-text-color);
+}
+
+/* Edit task */
+ul li input[type=text]{
+    display: none;
+}
+ul li.editMode input[type=text]{
+    display: block;
+}
+ul li.editMode label{
+    display: none;
 }
