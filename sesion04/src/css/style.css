@@ -1,0 +1,19 @@
+h1{
+    font-size: xx-large;
+}
+
+.container {
+    display: grid;
+    height: 100vh;
+    grid-template-areas: 
+    "section-1 section-2"
+    ;
+}
+section:nth-of-type(1) {
+    grid-area: section-1;
+    background-color: chocolate;
+}
+section:nth-of-type(2) {
+    grid-area: section-2;
+    background-color: gold;
+}
