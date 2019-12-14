@@ -1,19 +1,79 @@
-h1{
-    font-size: xx-large;
+* {
+    --padding: 15px;
+}
+body{
+    height: 100vh;
+    margin: 0;
 }
 
-.container {
-    display: grid;
+div#bg {
+    clip-path: polygon(50% 0, 100% 0, 100% 75%, 50% 100%, 0 100%, 0 0);
+    background-color: midnightblue;
+    width: 100vw;
     height: 100vh;
-    grid-template-areas: 
-    "section-1 section-2"
-    ;
+    position: absolute;
+    z-index: -1;
 }
-section:nth-of-type(1) {
-    grid-area: section-1;
-    background-color: chocolate;
+
+header a{
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: var(--padding);
 }
-section:nth-of-type(2) {
-    grid-area: section-2;
-    background-color: gold;
+
+section#card{
+    background: #fff;
+    padding: 20px;
+    margin: 1em auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.2);
+    width: 80%;
+}
+
+section#card > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+section#card > ul > li{
+    margin-bottom: 10px;
+}
+section#card > ul > li > span{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: salmon;
+    border-radius: 35%;
+    margin-right: 10px;
+}
+section#card > ul > li > strong{
+    display: inline-block;
+    margin-left: 40px;
+    margin-top: 10px;
+}
+
+section#primary {
+    color: #fff;
+    padding: var(--padding);
+    text-align: center;
+}
+section#primary > h1{
+    font-size: 3em;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+section#primary > p{
+    font-size: 1.5em;
+}
+section#primary > a{
+    color: springgreen;
+    display: block;
+    border-radius: 15px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    background-color: teal;
+    margin: 50px auto 0 auto;
+    padding: var(--padding);
 }
