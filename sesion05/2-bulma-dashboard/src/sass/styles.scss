@@ -1,0 +1,19 @@
+@charset 'utf-8';
+
+/* Your brand colors */
+/* Color Theme Swatches in Hex */
+$Graphic-Design-Trends-2020-Bold-Fonts-4-1-hex: #102B47;
+$Graphic-Design-Trends-2020-Bold-Fonts-4-2-hex: #28D1D4;
+$Graphic-Design-Trends-2020-Bold-Fonts-4-3-hex: #F2C55E;
+$Graphic-Design-Trends-2020-Bold-Fonts-4-4-hex: #F45432;
+$Graphic-Design-Trends-2020-Bold-Fonts-4-5-hex: #BF2424;
+
+// Bulma's global variables updated
+$primary: $Graphic-Design-Trends-2020-Bold-Fonts-4-1-hex;
+$info: $Graphic-Design-Trends-2020-Bold-Fonts-4-2-hex;
+$success: $Graphic-Design-Trends-2020-Bold-Fonts-4-3-hex;
+$warning: $Graphic-Design-Trends-2020-Bold-Fonts-4-4-hex;
+$danger: $Graphic-Design-Trends-2020-Bold-Fonts-4-5-hex; 
+
+// this must be after the variables overwrite
+@import '~bulma/bulma';

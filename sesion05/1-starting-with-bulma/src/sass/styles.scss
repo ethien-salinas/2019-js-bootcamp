@@ -1,2 +1,18 @@
 @charset 'utf-8';
+
+/* Your brand colors */
+$Bright-neon-yellow-fluorescing-coral-1-hex: #D9CB04;
+$Bright-neon-yellow-fluorescing-coral-2-hex: #D9B504;
+$Bright-neon-yellow-fluorescing-coral-3-hex: #A68B03;
+$Bright-neon-yellow-fluorescing-coral-4-hex: #735702;
+$Bright-neon-yellow-fluorescing-coral-5-hex: #402401;
+
+// Bulma's global variables updated
+$primary: $Bright-neon-yellow-fluorescing-coral-1-hex;
+$info: $Bright-neon-yellow-fluorescing-coral-2-hex;
+$success: $Bright-neon-yellow-fluorescing-coral-3-hex;
+$warning: $Bright-neon-yellow-fluorescing-coral-4-hex;
+$danger: $Bright-neon-yellow-fluorescing-coral-5-hex; 
+
+// this must be after the variables overwritte
 @import '~bulma/bulma';
