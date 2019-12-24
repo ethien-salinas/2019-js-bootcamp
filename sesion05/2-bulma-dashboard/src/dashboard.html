@@ -1,12 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>bulma dashboard</title>
 </head>
+
 <body>
-    Dashboard
+  <!--navbar-->
+  <nav class="navbar has-shadow">
+    <div class="navbar-brand">
+      <a href="#" class="navbar-item">
+        <img src="images/user.png" alt="brand image">
+      </a>
+      <div class="navbar-burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start">
+        <div class="navbar-item">
+          <small>your awesome website</small>
+        </div>
+      </div>
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-link">Ethien Salinas</div>
+          <div class="navbar-dropdown">
+            <a href="#" class="navbar-item">
+              <div>
+                <span><i class="fas fa-user"></i></span>
+                Profile
+              </div>
+            </a>
+            <a href="#" class="navbar-item">
+              <div>
+                <span><i class="fas fa-bug"></i></span>
+                Report a bug
+              </div>
+            </a>
+            <a href="#" class="navbar-item">
+              <div>
+                <span><i class="fas fa-sign-out-alt"></i></span>
+                Sign out
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!--main layout-->
+  <section class="section">
+    <div class="columns">
+      <!--left side menu-->
+      <div class="column is-4-tablet is-3-desktop is-2-widescreen">
+        <nav class="menu">
+          <p class="menu-label">Menu</p>
+          <ul class="menu-list">
+            <li>
+              <a href="dashboard.html" class="is-active">
+                <span class="icon">
+                  <i class="fas fa-tachometer-alt"></i>
+                </span>
+                Dashboard
+              </a>
+            </li>
+            <li>
+              <a href="books.html">
+                <span class="icon"><i class="fas fa-book"></i></span>
+                Books
+              </a>
+            </li>
+            <li>
+              <a href="customers.html">
+                <span class="icon"><i class="fas fa-address-book"></i></span>
+                Customers
+              </a>
+            </li>
+            <li>
+              <a href="orders.html">
+                <span class="icon"><i class="fas fa-file-alt"></i></span>
+                Orders
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div><!--[end] left site menu-->
+      <!--right side: main section-->
+      <div class="column">
+        <div class="level">
+          <div class="level-left">
+            <h2 class="subtitle is-3">
+              <span class="has-text-grey-light">Hello</span>
+              <strong>Ethien Salinas</strong>
+            </h2>
+          </div>
+          <div class="level-right">
+            <div class="select">
+              <select>
+                <option>Today</option>
+                <option>Yesterday</option>
+                <option>This week</option>
+                <option>This Month</option>
+                <option>This year</option>
+                <option>All time</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="columns is-multiline">
+          <div class="column is-12-tablet is-6-desktop is-3-widescreen">1</div>
+          <div class="column is-12-tablet is-6-desktop is-3-widescreen">2</div>
+          <div class="column is-12-tablet is-6-desktop is-3-widescreen">3</div>
+          <div class="column is-12-tablet is-6-desktop is-3-widescreen">4</div>
+        </div>
+      </div>
+    </div>
+  </section>
 </body>
+
 </html>
