@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Vue Ecosystem</h1>
+    <section id="root">
+        <vue-tech
+            v-for='(vueTech) in vueEcosystem'
+            :tech="vueTech.technology"
+        />
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <script>
+        Vue.component('vue-tech', {
+            props: ['tech'],
+            template: '<p>{{tech}}</p>'
+        })
+        
+        let app = new Vue({
+        el: '#root',
+        data: {
+            vueEcosystem: [
+                {id: 1, technology: 'vue cli'},
+                {id: 2, technology: 'vue devtools'},
+                {id: 3, technology: 'vue router'},
+                {id: 4, technology: 'vuex (state manager)'},
+                {id: 5, technology: 'nuxt (server side render)'},
+            ]
+        }
+    })
+   </script>
+</body>
+</html>
