@@ -6,7 +6,9 @@
         v-on:change="$emit('mark-complete', todo.id)"
         />
         <label>{{todo.title}}</label>
-      <button v-on:click="$emit('evento-personalizado', 'valor que lo acompaña')">Emit event</button>
+        <button
+          v-on:click="$emit('delete-todo', todo.id)"
+        ></button>
   </div>
 </template>
 
@@ -18,5 +20,7 @@ export default {
 </script>
 
 <style>
-
+  li.completed label {
+      text-decoration: line-through;
+  }
 </style>
