@@ -23,9 +23,26 @@ export default {
     methods: {
         handleSubmit(e){
             e.preventDefault()
-            console.log('*** handleSubmit ***', e)
-            console.log(this.email)
-            console.log(this.password)
+            console.log('*** handleSubmit ***')
+            let data = {
+              email: this.email,
+              password: this.password
+            }
+            console.log(data)
+            console.log(JSON.stringify(data))
+            fetch('http://127.0.0.1:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data), //"{'email':'ethien.salinas@gmail.com','password':'qwerty'}"
+            })
+            .then((response) => {
+                return response.json();
+            })
+            .then((myJson) => {
+                console.log(myJson);
+            });
         }
     }
 }
