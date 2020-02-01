@@ -23,7 +23,6 @@ export default {
     methods: {
         handleSubmit(e){
             e.preventDefault()
-            console.log('*** handleSubmit ***')
             let data = {
               email: this.email,
               password: this.password
@@ -35,13 +34,26 @@ export default {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data), //"{'email':'ethien.salinas@gmail.com','password':'qwerty'}"
+                body: JSON.stringify(data),
             })
             .then((response) => {
                 return response.json();
             })
-            .then((myJson) => {
-                console.log(myJson);
+            .then((response) => {
+                console.log(response);
+                let is_admin = response.user.is_admin
+                // set in localstorage
+                localStorage.setItem('user', JSON.stringify(response.user))
+                localStorage.setItem('jwt', response.token)
+
+                // redirect as needed
+                if(localStorage.getItem('jwt') !== null){
+                  if (is_admin) {
+                    this.$router.push('admin')
+                  }else{
+                    this.$router.push('dashboard')
+                  }
+                }
             });
         }
     }
