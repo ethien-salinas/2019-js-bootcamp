@@ -1,46 +1,42 @@
-const http = require('http');
+require('dotenv').config()
+const express = require('express')
+const jwt = require('jsonwebtoken')
+const app = express()
+const port = 3000
+const bodyParser = require('body-parser')
 
-const hostname = '127.0.0.1';
-const port = 3000;
-const headers = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
-  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-};
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}));
 
-const server = http.createServer((req, res) => {
-  res.setHeader('Content-Type', 'text/plain');
-  res.writeHead(200, headers);
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
-  // build body data by events
-  let body = [];
-  req.on('error', (err) => {
-    console.error(err);
-  })
-  .on('data', (chunk) => {
-    body.push(chunk);
-  })
-  .on('end', () => {
-    body = Buffer.concat(body).toString();
-    console.log(body)
-  })
-
-  if(req.method === 'POST' && req.url === '/login'){
-    res.end('[POST] /login path');
+app.post('/login', (req, res) => {
+  let email = req.body.email
+  let password = req.body.password
+  if(email !== 'ethien.salinas@gmail.com'){
+    return res.status(404).send({err:'user not found'})
+  }else if(email === 'ethien.salinas@gmail.com' && password === 'qwerty'){
+    let token = jwt.sign(
+      {id: '00369'},
+      process.env.JWT_SECRET,
+      {expiresIn: '1h'}
+    )
+    return res.status(200).send({
+      auth: true,
+      token,
+      user: {
+        id: '00369',
+        name: 'Ethien Salinas',
+        email,
+        is_admin: false
+      }
+    })
   }
-  res.end('[*]Hello World');
-});
+  return res.send({data:'Hello World!'})
+})
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
-
-/**
- * let body = [];
-  request.on('error', (err) => {
-    console.error(err);
-  }).on('data', (chunk) => {
-    body.push(chunk);
-  }).on('end', () => {
-    body = Buffer.concat(body).toString();
- */
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
