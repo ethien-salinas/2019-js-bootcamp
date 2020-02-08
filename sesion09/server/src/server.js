@@ -17,9 +17,29 @@ app.use(function(req, res, next) {
 app.post('/login', (req, res) => {
   let email = req.body.email
   let password = req.body.password
-  if(email !== 'ethien.salinas@gmail.com'){
+  if(email !== 'ethien.salinas@gmail.com' && email !== 'admin@gmail.com'){
     return res.status(404).send({err:'user not found'})
-  }else if(email === 'ethien.salinas@gmail.com' && password === 'qwerty'){
+  }
+  // admin user case
+  else if(email === 'admin@gmail.com' && password === 'qwerty'){
+    let token = jwt.sign(
+      {id: '01215'},
+      process.env.JWT_SECRET,
+      {expiresIn: '1h'}
+    )
+    return res.status(200).send({
+      auth: true,
+      token,
+      user: {
+        id: '00369',
+        name: 'Daniel Salinas',
+        email,
+        is_admin: true
+      }
+    })
+  }
+  // no admin user case
+  else if(email === 'ethien.salinas@gmail.com' && password === 'qwerty'){
     let token = jwt.sign(
       {id: '00369'},
       process.env.JWT_SECRET,
@@ -36,7 +56,10 @@ app.post('/login', (req, res) => {
       }
     })
   }
-  return res.send({data:'Hello World!'})
+  // any other case
+  else {
+    return res.status(500). send('Error on the server')
+  }
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
