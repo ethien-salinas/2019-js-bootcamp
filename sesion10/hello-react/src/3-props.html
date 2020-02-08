@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+  <title>React components</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      render(){
+          let receivedName = this.props.name
+          let myJSX = <p>this is a {this.props.propForJSX} line </p>
+          console.log(receivedName)
+        return (
+            <div>
+                <h2>Hello, {this.props.name}</h2>
+                {myJSX}
+            </div>
+            )
+      }
+    }
+    ReactDOM.render(
+      <App name="Ethien" propForJSX="JSX"/>,
+      document.querySelector('#root')
+    )
+  </script>
+</body>
+
+</html>
