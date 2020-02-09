@@ -10,48 +10,56 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 
-  <title>State and lifecycle</title>
+  <title>Conditional Rendering</title>
 </head>
 
 <body>
+
   <div id="root"></div>
 
   <script type="text/babel">
+    function LoginComponent(props) {
+      return (
+        <button onClick={props.onClick}>Login</button>
+      )
+    }
+    function LogoutComponent(props) {
+      return (
+        <button onClick={props.onClick}>Logout</button>
+      )
+    }
 
-    class Clock extends React.Component {
-
+    class LoginLogout extends React.Component {
       constructor(props) {
         super(props)
         this.state = {
-          date: new Date()
+          isLoggedIn: false
         }
       }
 
-      componentDidMount(){
-        this.timerID = setInterval(
-          () => this.tick(),
-          1000
-        )
-      }
-      componentWillUnmount(){
-        clearInterval(this.timerID)
-      }
-      tick(){
+      handleClick(val) {
         this.setState({
-          date: new Date()
+          isLoggedIn: val
         })
       }
+
       render() {
+        let button;
+        if (this.state.isLoggedIn) {
+          button = <LogoutComponent onClick={(e) => this.handleClick(false, e)} />
+        } else {
+          button = <LoginComponent onClick={(e) => this.handleClick(true, e)} />
+        }
         return (
           <div>
-            <h2>It is {this.state.date.toTimeString()}</h2>
+            {button}
           </div>
         )
       }
     }
 
     ReactDOM.render(
-      <Clock />,
+      <LoginLogout />,
       document.querySelector('#root')
     )
   </script>

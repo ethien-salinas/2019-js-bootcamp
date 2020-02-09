@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+  <title>State and lifecycle</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    class EventListenerExample extends React.Component{
+        
+        handleClick(){
+            console.log("[1]React has listen the event")
+        }
+        handleClick2(){
+            console.log("[2]React has listen the event", this)
+        }
+        handleClick3(args){
+            console.log("[3]React has listen the event", args)
+        }
+
+        render(){
+            return(
+                <div>
+                    <h2>Event Listener Example</h2>
+                    <button onClick={this.handleClick}>[1]click me</button>
+                    <button onClick={(e) => this.handleClick2(e)}>[2]click me</button>
+                    <button onClick={(e) => this.handleClick3('this is an argument', e)}>[3]arguments</button>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(
+      <EventListenerExample />,
+      document.querySelector('#root')
+    )
+  </script>
+</body>
+
+</html>

@@ -18,40 +18,38 @@
 
   <script type="text/babel">
 
-    class Clock extends React.Component {
-
+    class Counter extends React.Component {
       constructor(props) {
         super(props)
         this.state = {
-          date: new Date()
+          counter: 0
         }
       }
-
       componentDidMount(){
         this.timerID = setInterval(
-          () => this.tick(),
+          () => this.incrementCounter(),
           1000
         )
       }
       componentWillUnmount(){
         clearInterval(this.timerID)
       }
-      tick(){
+      incrementCounter(){
         this.setState({
-          date: new Date()
+          counter: this.state.counter+1
         })
       }
       render() {
         return (
           <div>
-            <h2>It is {this.state.date.toTimeString()}</h2>
+            <h2>Seconds: {this.state.counter}</h2>
           </div>
         )
       }
     }
 
     ReactDOM.render(
-      <Clock />,
+      <Counter />,
       document.querySelector('#root')
     )
   </script>

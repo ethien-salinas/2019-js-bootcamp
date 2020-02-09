@@ -10,48 +10,26 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 
-  <title>State and lifecycle</title>
+  <title>React components</title>
 </head>
 
 <body>
   <div id="root"></div>
 
   <script type="text/babel">
-
-    class Clock extends React.Component {
-
-      constructor(props) {
-        super(props)
-        this.state = {
-          date: new Date()
-        }
-      }
-
-      componentDidMount(){
-        this.timerID = setInterval(
-          () => this.tick(),
-          1000
-        )
-      }
-      componentWillUnmount(){
-        clearInterval(this.timerID)
-      }
-      tick(){
-        this.setState({
-          date: new Date()
-        })
-      }
-      render() {
-        return (
-          <div>
-            <h2>It is {this.state.date.toTimeString()}</h2>
-          </div>
-        )
-      }
+    function WelcomeFunctionalComponent(props) {
+      return (
+        <div>
+          <h2>Hi {props.name}! Welcome to Functional Components</h2>
+          <InnerFunctionalComponent />
+        </div>
+      )
     }
-
+    function InnerFunctionalComponent(props){
+      return <h2>Inner Functional Component</h2>
+    }
     ReactDOM.render(
-      <Clock />,
+      <WelcomeFunctionalComponent name="Ethien" />,
       document.querySelector('#root')
     )
   </script>
