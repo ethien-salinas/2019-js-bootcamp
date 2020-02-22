@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default function TodoItem(props) {
-  return (
-    <p>{props.todo.title}</p>
-  );
+export default class TodoItem extends Component {
+
+  render(){
+    return (
+      <p>{this.props.todo.title}</p>
+    );
+  }
 }
