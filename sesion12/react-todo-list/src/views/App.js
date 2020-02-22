@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TodoList from '../components/TodoList'
-import '../css/App.css';
+import AddTodo from '../components/AddTodo'
 
 class App extends Component {
 
@@ -16,8 +16,8 @@ class App extends Component {
 
   markComplete = id => {
     this.setState({
-      todos: this.state.todos.map( todo => {
-        if(todo.id === id){
+      todos: this.state.todos.map(todo => {
+        if (todo.id === id) {
           todo.completed = !todo.completed
         }
         return todo
@@ -25,13 +25,23 @@ class App extends Component {
     })
   }
 
+  deleteTodo = id => {
+    fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+      method: 'DELETE'
+    })
+      .then(res => this.setState({
+        todos: [...this.state.todos.filter(todo => todo.id !== id)]
+      }))
+  }
+
   render() {
     return (
-      <div className="App">
+      <div>
         {this.state.todos &&
           <TodoList
             todos={this.state.todos}
             markComplete={this.markComplete}
+            deleteTodo={this.deleteTodo}
           />
         }
       </div>
