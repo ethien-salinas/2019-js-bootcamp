@@ -34,15 +34,36 @@ class App extends Component {
       }))
   }
 
+  addTodo = title => {
+    fetch('https://jsonplaceholder.typicode.com/todos', {
+      method: 'POST',
+      body: JSON.stringify({
+        completed: false,
+        title,
+        userId: 3
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
+      .then(response => response.json())
+      .then(newTodoTask => this.setState({
+        todos: [...this.state.todos, newTodoTask]
+      }))
+  }
+
   render() {
     return (
       <div>
         {this.state.todos &&
-          <TodoList
-            todos={this.state.todos}
-            markComplete={this.markComplete}
-            deleteTodo={this.deleteTodo}
-          />
+          <>
+            <AddTodo addTodo={this.addTodo} />
+            <TodoList
+              todos={this.state.todos}
+              markComplete={this.markComplete}
+              deleteTodo={this.deleteTodo}
+            />
+          </>
         }
       </div>
     );
