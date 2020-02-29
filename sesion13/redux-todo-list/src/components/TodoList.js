@@ -11,8 +11,9 @@ const TodoList = ({ todos, toggleTodo }) => {
           onClick={() => toggleTodo(todo.id)}
         />
       )
-
       }
     </ul>
   )
 }
+
+export default TodoList
