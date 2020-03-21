@@ -16,64 +16,101 @@ import {
   StatusBar,
   AsyncStorage,
   Button,
+  TextInput,
+  Platform,
+  Keyboard,
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+const isAndroid = Platform.OS == 'android'
+const viewPadding = 10;
 
 class App extends Component {
 
   state = {
-    // todos: [{ key: 0, text: 'learn react' },{ key: 1, text: 'learn react native' },{ key: 2, text: 'learn js' }],
     todos: [],
     text: ''
   }
 
   componentDidMount() {
-    TodosUtils.save([{ key: 0, text: 'learn react' }, { key: 1, text: 'learn react native' }, { key: 2, text: 'learn js' }, { key: 3, text: 'learn es6' }])
+    Keyboard.addListener(isAndroid ? 'keyboardDidShow' : 'keyboardWillShow',
+      e => this.setState({
+        viewPadding: e.endCoordinates.height + viewPadding
+      })
+    )
+    Keyboard.addListener(isAndroid ? 'keyboardDidHide' : 'keyboardWillHide',
+      () => this.setState({ viewPadding: viewPadding })
+    )
+    TodosUtils.save([
+      { "key": 0, "text": "learn react" },
+      { "key": 1, "text": "learn react native" },
+      { "key": 2, "text": "learn js" },
+      { "key": 3, "text": "learn es6" }
+    ])
     TodosUtils.all(todos => this.setState({ todos: todos }))
-    console.log(this.state)
   }
   deleteTodo = (idx) => {
     this.setState(
       prevState => {
         let todos = prevState.todos.slice()
         todos.splice(idx, 1)
-        return {
-          todos: todos
-        }
-      }
+        return { todos }
+      },
+      () => TodosUtils.save(this.state.todos)
     )
+  }
+  addTodo = () => {
+    let notEmpty = this.state.text.trim().length > 0
+    if (notEmpty) {
+      this.setState(
+        prevState => {
+          let { todos, text } = prevState;
+          return {
+            todos: todos.concat({
+              key: todos.length,
+              text: text
+            }),
+            text: ''
+          }
+        },
+        () => TodosUtils.save(this.state.todos)
+      )
+    }
+  }
+  changeTextHandler = (text) => {
+    this.setState({ text })
   }
 
   render() {
     return (
-      <>
-        <StatusBar barStyle="dark-content" />
-        <SafeAreaView>
-          <View>
-            <Text>Todo List</Text>
-            <FlatList
-              data={this.state.todos}
-              renderItem={(item, index) =>
-                <View>
-                  <Text>{item.text}</Text>
-                  <Button
-                    title="Del"
-                    onPress={() => this.deleteTodo(idx)}
-                  />
-                </View>
-              }
-              keyExtractor={item => item.key}
-            />
-          </View>
-        </SafeAreaView>
-      </>
+
+      <View
+        style={styles.container}
+      >
+        <Text>Todo List</Text>
+        <FlatList
+          style={styles.list}
+          data={this.state.todos}
+          renderItem={({ item, index }) =>
+            <View style={styles.listItemContainer}>
+              <Text style={styles.listItem}>{item.text}</Text>
+              <Button
+                title="Delete"
+                onPress={() => this.deleteTodo(index)}
+              />
+            </View>
+          }
+          keyExtractor={item => item.key}
+        />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Add ToDo task"
+          onChangeText={this.changeTextHandler}
+          onSubmitEditing={this.addTodo}
+          value={this.state.text}
+          returnKeyType='done'
+          returnKeyLabel='done'
+        />
+      </View>
     );
   }
 };
@@ -88,7 +125,6 @@ let TodosUtils = {
   },
   convertArrayOfObjToStringWithSeparator(todos) {
     let result = todos.map(todo => todo.text).join('||')
-    console.log('result: ', result)
     return result
   },
   all(callback) {
@@ -102,42 +138,32 @@ let TodosUtils = {
 }
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FCFCFC',
+    paddingTop: 20
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
+  list: {
+    width: '100%'
   },
-  body: {
-    backgroundColor: Colors.white,
+  listItemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  listItem: {
+    padding: 3,
+    fontSize: 18
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
+  textInput: {
+    height: 40,
+    paddingRight: 10,
+    borderColor: 'gray',
+    borderWidth: isAndroid ? 0 : 1,
+    width: '100%'
+  }
 });
 
 export default App;
