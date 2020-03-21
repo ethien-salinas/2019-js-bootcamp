@@ -1,25 +1,14 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
-  FlatList,
   View,
   Text,
-  StatusBar,
   AsyncStorage,
-  Button,
-  TextInput,
   Platform,
   Keyboard,
 } from 'react-native';
+import TodoList from './components/TodoList';
+import AddTodo from './components/AddTodo';
 
 const isAndroid = Platform.OS == 'android'
 const viewPadding = 10;
@@ -87,21 +76,11 @@ class App extends Component {
         style={styles.container}
       >
         <Text>Todo List</Text>
-        <FlatList
-          style={styles.list}
+        <TodoList
           data={this.state.todos}
-          renderItem={({ item, index }) =>
-            <View style={styles.listItemContainer}>
-              <Text style={styles.listItem}>{item.text}</Text>
-              <Button
-                title="Delete"
-                onPress={() => this.deleteTodo(index)}
-              />
-            </View>
-          }
-          keyExtractor={item => item.key}
+          deleteTodo={this.deleteTodo}
         />
-        <TextInput
+        {/* <TextInput
           style={styles.textInput}
           placeholder="Add ToDo task"
           onChangeText={this.changeTextHandler}
@@ -109,6 +88,11 @@ class App extends Component {
           value={this.state.text}
           returnKeyType='done'
           returnKeyLabel='done'
+        />*/ }
+        <AddTodo
+          changeTextHandler={this.changeTextHandler}
+          addTodo={this.addTodo}
+          value={this.state.text}
         />
       </View>
     );
@@ -145,9 +129,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FCFCFC',
     paddingTop: 20
   },
-  list: {
-    width: '100%'
-  },
+
   listItemContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -157,13 +139,7 @@ const styles = StyleSheet.create({
     padding: 3,
     fontSize: 18
   },
-  textInput: {
-    height: 40,
-    paddingRight: 10,
-    borderColor: 'gray',
-    borderWidth: isAndroid ? 0 : 1,
-    width: '100%'
-  }
+
 });
 
 export default App;
