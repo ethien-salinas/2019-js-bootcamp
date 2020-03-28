@@ -1,16 +1,16 @@
 const { DataSource } = require('apollo-datasource')
 
-export default class UserAPI extends DataSource {
+class UserAPI extends DataSource {
 
-  constructor({store}){
+  constructor({ store }) {
     super()
     this.store = store
   }
-  initialize(config){
+  initialize(config) {
     this.context = config.context
   }
 
-  async createUser({name, email, password}){
+  async createUser({ name, email, password }) {
     const result = await this.store.Users.create({
       name,
       email,
@@ -18,5 +18,5 @@ export default class UserAPI extends DataSource {
     })
     return result
   }
-
 }
+module.exports = UserAPI
