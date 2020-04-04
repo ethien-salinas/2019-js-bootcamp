@@ -18,5 +18,10 @@ class UserAPI extends DataSource {
     })
     return result
   }
+
+  async getAllUsers(){
+    const result = await this.store.Users.findAll()
+    return result
+  }
 }
 module.exports = UserAPI
