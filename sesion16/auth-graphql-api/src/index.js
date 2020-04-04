@@ -1,16 +1,13 @@
-import bcrypt from 'bcrypt'
+require('dotenv').config()
 import logger from './logger'
+import { sign, verify } from 'jsonwebtoken'
 
-const saltRounds = 9
-const myPlaintextPassword = 's0/\/\P4$$w0rD'
-const hash = '$2b$09$sAYBi0zu3E1f9xcKc1XT6uDIUmO.W.UL8nFzlHldIvK7cmuFyAC2q'
+const token = sign({ name: 'Ethien Salinas' },
+  process.env.JWT_SECRET, { expiresIn: '1h' }
+)
+logger.debug(`token: ${token}`)
 
-bcrypt.hash(myPlaintextPassword, saltRounds, function (err, hash) {
-    if(err) logger.error(err)
-    logger.debug(`hash: ${hash}`)
+verify(token, process.env.JWT_SECRET, function (err, decoded) {
+  if (err) logger.error(err)
+  logger.info(JSON.stringify(decoded))
 });
-
-bcrypt.compare(myPlaintextPassword, hash, function (err, result) {
-    if (err) logger.error(err)
-    logger.debug(`result: ${result}`)
-})

@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^4.0.1",
+    "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
     "winston": "^3.2.1",
     "winston-daily-rotate-file": "^4.4.2"
   },
