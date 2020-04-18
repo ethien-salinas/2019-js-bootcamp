@@ -1,12 +1,13 @@
-import personJsonData from './json/person.json'
-
 export default {
   Query: {
     login: async (_, { email, password }, { dataSources }) =>
       await dataSources.authAPI.getToken({ email, password }),
     isValidToken: async (_, { token }, { dataSources }) =>
       await dataSources.authAPI.verifyToken(token),
-    person: () => personJsonData
+    person: (_, { id }, { dataSources }) =>
+      dataSources.personAPI.getPerson(id),
+    persons: (_, __, { dataSources }) =>
+      dataSources.personAPI.getAllPerson()
   },
 
   Mutation: {

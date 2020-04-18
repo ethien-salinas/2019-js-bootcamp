@@ -4,7 +4,8 @@ export default gql`
     type Query{
       login(email: String, password: String): String
       isValidToken(token:String): Boolean
-      person(id: Int): [Person]
+      person(id: Int): Person
+      persons: [Person]
     }
     type Mutation {
       signup(name: String, email: String, password:String): User

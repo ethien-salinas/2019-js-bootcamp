@@ -5,6 +5,7 @@ import resolvers from './resolvers'
 import createStore from './persistence/connection'
 import AuthAPI from './datasource/AuthAPI'
 import UserAPI from './datasource/UserAPI'
+import PersonAPI from './datasource/PersonAPI'
 
 const store = createStore()
 
@@ -13,6 +14,7 @@ const server = new ApolloServer({
   resolvers,
   dataSources: () => ({
     authAPI: new AuthAPI({ store }),
+    personAPI: new PersonAPI(),
     userAPI: new UserAPI({ store })
   })
 })
