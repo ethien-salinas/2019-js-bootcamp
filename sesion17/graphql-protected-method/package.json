@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel src -d dist && node dist/index.js"
+    "start": "babel src -d dist --copy-files && node dist/index.js"
   },
   "keywords": [],
   "author": "",
