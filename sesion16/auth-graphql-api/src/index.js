@@ -1,13 +1,22 @@
 require('dotenv').config()
-import logger from './logger'
-import { sign, verify } from 'jsonwebtoken'
+import { ApolloServer } from 'apollo-server'
+import typeDefs from './schema'
+import resolvers from './resolvers'
+import createStore from './persistence/connection'
+import AuthAPI from './datasource/AuthAPI'
+import UserAPI from './datasource/UserAPI'
 
-const token = sign({ name: 'Ethien Salinas' },
-  process.env.JWT_SECRET, { expiresIn: '1h' }
-)
-logger.debug(`token: ${token}`)
+const store = createStore()
 
-verify(token, process.env.JWT_SECRET, function (err, decoded) {
-  if (err) logger.error(err)
-  logger.info(JSON.stringify(decoded))
-});
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  dataSources: () => ({
+    authAPI: new AuthAPI({ store }),
+    userAPI: new UserAPI({ store })
+  })
+})
+
+server.listen().then(({ url }) => {
+  console.log(`Server running at ${url} 🤘😎`)
+})

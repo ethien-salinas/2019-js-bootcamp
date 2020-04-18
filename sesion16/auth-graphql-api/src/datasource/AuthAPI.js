@@ -2,7 +2,7 @@ import { DataSource } from 'apollo-datasource'
 import { sign, verify } from 'jsonwebtoken'
 import { compare } from 'bcrypt'
 import { AuthenticationError, ApolloError } from 'apollo-server'
-import logger from './logger'
+import logger from '../logger'
 
 export default class AuthAPI extends DataSource {
 
