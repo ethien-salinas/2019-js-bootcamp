@@ -16,7 +16,12 @@ const server = new ApolloServer({
     authAPI: new AuthAPI({ store }),
     personAPI: new PersonAPI(),
     userAPI: new UserAPI({ store })
-  })
+  }),
+  context: async ({ req }) => {
+    return {
+      token: req.headers.authorization || ''
+    }
+  }
 })
 
 server.listen().then(({ url }) => {

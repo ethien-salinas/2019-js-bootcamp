@@ -6,8 +6,9 @@ export default {
       await dataSources.authAPI.verifyToken(token),
     person: (_, { id }, { dataSources }) =>
       dataSources.personAPI.getPerson(id),
-    persons: (_, __, { dataSources }) =>
-      dataSources.personAPI.getAllPerson()
+    persons: async (_, __, { dataSources, token }) =>
+      await dataSources.authAPI.verifyToken(token)
+      && dataSources.personAPI.getAllPerson()
   },
 
   Mutation: {
