@@ -1,7 +1,13 @@
 import express from 'express'
 import { hash } from 'bcrypt'
 import logger from '../logger'
+import auth from '../middleware/auth'
 const router = express.Router()
+
+router.use((req, res, next) => {
+  logger.info(req.headers)
+  next()
+}, auth())
 
 const saltRounds = 10
 
@@ -24,7 +30,7 @@ router.get('/', async (req, res) => {
   const result = await store.Users.findAll({
     attributes: ['id', 'name', 'email', 'role']
   })
-  logger.info(JSON.stringify({result}))
+  logger.info(JSON.stringify({ result }))
   res.send({ result })
   res.end()
 })
