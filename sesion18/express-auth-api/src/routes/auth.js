@@ -9,7 +9,7 @@ router.use((req, res, next)=>{
 
 router.post('/', (req, res) => {
   const { email, password } = req.body
-  if (email && password) {
+  if (email==='ethien.salinas@gmail.com' && password==='qwerty') {
     const tokenData = {
       email,
       roles: ['copywriter']
