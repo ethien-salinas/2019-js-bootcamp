@@ -24,6 +24,7 @@ router.get('/', async (req, res) => {
   const result = await store.Users.findAll({
     attributes: ['id', 'name', 'email', 'role']
   })
+  logger.info(JSON.stringify({result}))
   res.send({ result })
   res.end()
 })
