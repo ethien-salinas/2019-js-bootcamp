@@ -19,4 +19,13 @@ router.post('/', async (req, res) => {
   res.end()
 })
 
+router.get('/', async (req, res) => {
+  const store = req.app.get('store')
+  const result = await store.Users.findAll({
+    attributes: ['id', 'name', 'email', 'role']
+  })
+  res.send({ result })
+  res.end()
+})
+
 module.exports = router
