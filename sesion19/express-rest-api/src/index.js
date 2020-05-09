@@ -3,6 +3,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import logger from './logger'
 import user from './routes/user'
+import authentication from './routes/authentication'
 import createStore from './persistence/connection'
 
 const app = express()
@@ -16,6 +17,7 @@ app.get('/', function (req, res) {
   res.send('Express REST API v1')
 })
 
+app.use('/login', authentication)
 app.use('/user', user)
 
 app.listen(3000)
