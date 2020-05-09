@@ -2,14 +2,20 @@ require('dotenv').config()
 import express from 'express'
 import bodyParser from 'body-parser'
 import logger from './logger'
+import user from './routes/user'
+import createStore from './persistence/connection'
 
 const app = express()
+const store = createStore()
 
 app.use(bodyParser.json())
+app.set('store', store)
 
 app.get('/', function (req, res) {
-  logger.info('Hello World with winston')
-  res.send('Hello World with express')
+  logger.info(req)
+  res.send('Express REST API v1')
 })
+
+app.use('/user', user)
 
 app.listen(3000)
