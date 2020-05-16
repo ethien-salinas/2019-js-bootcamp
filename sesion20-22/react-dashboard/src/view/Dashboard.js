@@ -1,5 +1,6 @@
 import React from 'react'
 import OrderList from '../components/OrderList'
+import BookList from '../components/BookList'
 
 const Dashboard = () => {
   return (
@@ -10,7 +11,7 @@ const Dashboard = () => {
           <OrderList />
         </div>
         <div className="column is-one-third">
-          <OrderList />
+          <BookList />
         </div>
         <div className="column is-one-third">
           <OrderList />
