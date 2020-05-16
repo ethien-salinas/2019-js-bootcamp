@@ -5,6 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Dashboard from './Dashboard'
 
 const App = () => {
   return (
