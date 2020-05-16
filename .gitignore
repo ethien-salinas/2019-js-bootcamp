@@ -54,3 +54,6 @@ jspm_packages/
 
 # distribution
 dist/
+
+# editor
+.vscode
