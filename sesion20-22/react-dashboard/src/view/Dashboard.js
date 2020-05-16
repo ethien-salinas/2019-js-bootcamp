@@ -2,23 +2,23 @@ import React from 'react'
 import OrderList from '../components/OrderList'
 import BookList from '../components/BookList'
 import KpiList from '../components/KpiList'
+import NavMenu from '../components/NavMenu'
+import LeftSideLayout from '../layout/LeftSideLayout'
+import RightSideLayout from '../layout/RightSideLayout'
 
 const Dashboard = () => {
   return (
     <>
-      <h1>Dashboard</h1>
-      <div className="columns is-multiline">
-        <KpiList />
-        <div className="column is-one-third">
-          <OrderList />
+      <section className="section">
+        <div className="columns">
+          <div className="column is-one-fifth">
+            <LeftSideLayout />
+          </div>
+          <div className="column">
+            <RightSideLayout />
+          </div>
         </div>
-        <div className="column is-one-third">
-          <BookList />
-        </div>
-        <div className="column is-one-third">
-          <OrderList />
-        </div>
-      </div>
+      </section>
     </>
   )
 }
