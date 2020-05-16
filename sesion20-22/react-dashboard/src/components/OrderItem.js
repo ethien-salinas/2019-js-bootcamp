@@ -2,20 +2,22 @@ import React from 'react'
 
 const OrderItem = (props) => {
 
+  const {orderId, dateTime, customerName, amount, status, statusClass} = props.data
+
   return (
     <div className="level">
       <div className="level-left">
         <div>
           <p className="title is-6 is-marginless">
-            <a>787352</a>
+            <a>{orderId}</a>
           </p>
-          <small>03/05/2020 05:30:06</small> por <a>{props.data.custtomer}</a>
+          <small>{dateTime}</small> por <a>{customerName}</a>
         </div>
       </div>
       <div className="level-right">
         <div className="">
-          <p className="title is-6 is-marginless">$63.96</p>
-          <span class="tag is-success">Success</span>
+          <p className="title is-6 is-marginless">${amount}</p>
+          <span className={`tag ${statusClass}`}>{status}</span>
         </div>
       </div>
     </div>
