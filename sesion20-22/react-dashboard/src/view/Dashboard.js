@@ -5,7 +5,17 @@ const Dashboard = () => {
   return (
     <>
       <h1>Dashboard</h1>
-      <OrderList />
+      <div className="columns">
+        <div className="column is-one-third">
+          <OrderList />
+        </div>
+        <div className="column is-one-third">
+          <OrderList />
+        </div>
+        <div className="column is-one-third">
+          <OrderList />
+        </div>
+      </div>
     </>
   )
 }
