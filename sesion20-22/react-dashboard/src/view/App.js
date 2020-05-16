@@ -9,7 +9,6 @@ import Dashboard from './Dashboard'
 
 const App = () => {
   return (
-    <>
     <Router>
       <Switch>
         <Route path="/books">
@@ -19,9 +18,7 @@ const App = () => {
           <Dashboard />
         </Route>
       </Switch>
-    </Router>
-    <h2>Elemento que siempre está</h2>
-    </>
+    </Router> 
   );
 }
 
