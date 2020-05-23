@@ -1,6 +1,7 @@
 # proof of concept
 poc/
 .DS_Store
+*.pem
 
 # Logs
 logs
