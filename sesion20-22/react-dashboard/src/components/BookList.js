@@ -1,34 +1,31 @@
 import React from 'react'
 import BookItem from './BookItem'
+import { gql } from 'apollo-boost'
+import { useQuery } from '@apollo/react-hooks'
 
 const BookList = () => {
 
-  const data = [
+  const ALL_BOOKS = gql`
     {
-      bookId: 1,
-      title: 'JS desde 2020 🤔',
-      bookImg: 'https://via.placeholder.com/160x210?text=Book%20Image',
-      amountSold: 36
-    },
-    {
-      bookId: 2,
-      title: 'Spring boot 🚀',
-      bookImg: 'https://via.placeholder.com/160x210?text=Book%20Image',
-      amountSold: 63
-    },
-    {
-      bookId: 3,
-      title: 'Go from zero to hero 👻',
-      bookImg: 'https://via.placeholder.com/160x210?text=Book%20Image',
-      amountSold: 36
-    },
-  ]
+      books{
+        id
+        title
+        imgUrl
+        amountSold
+      }
+    }
+  `
+
+  const { loading, error, data } = useQuery(ALL_BOOKS)
+
+  if (loading) return <p>Loading... ⏳</p>
+  if (error) return <p>Error 😞</p>
 
   return (
     <div className="card">
       <div className="card-content">
         <h2 className="title is-3">Libros más populares</h2>
-        {data.map((item, idx) => {
+        {data.books.map((item, idx) => {
           return <BookItem key={idx} data={item} />
         })}
         <button className="button is-link is-outlined">Ver todos</button>

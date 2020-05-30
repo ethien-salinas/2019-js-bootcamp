@@ -2,7 +2,7 @@ import React from 'react'
 
 const BookItem = (props) => {
 
-  const { bookId, title, bookImg, amountSold } = props.data
+  const { id: bookId, title, imgUrl: bookImg, amountSold } = props.data
 
   return (
     <article className="media">
