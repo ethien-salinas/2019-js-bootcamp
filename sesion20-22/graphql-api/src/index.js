@@ -4,6 +4,7 @@ import typeDefs from './schema'
 import resolvers from './resolvers'
 import createStore from './persistence/connection'
 import AuthAPI from './datasource/AuthAPI'
+import BookAPI from './datasource/BookAPI'
 import UserAPI from './datasource/UserAPI'
 
 const store = createStore()
@@ -13,6 +14,7 @@ const server = new ApolloServer({
   resolvers,
   dataSources: () => ({
     authAPI: new AuthAPI({ store }),
+    bookAPI: new BookAPI({ store }),
     userAPI: new UserAPI({ store })
   }),
   context: async ({ req }) => {
