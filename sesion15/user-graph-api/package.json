@@ -15,7 +15,7 @@
     "apollo-server": "^2.25.4",
     "dotenv": "^8.2.0",
     "graphql": "^14.6.0",
-    "sequelize": "^6.28.2",
+    "sequelize": "^6.29.0",
     "sqlite3": "^4.1.1"
   }
 }
