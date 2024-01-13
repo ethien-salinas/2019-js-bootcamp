@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^2.27.12",
+    "browser-sync": "^3.0.2",
     "parcel-bundler": "^1.12.4"
   }
 }
